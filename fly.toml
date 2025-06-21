@@ -1,4 +1,4 @@
-app = "vpsfly-x1"
+app = "vpsfly"
 kill_signal = "SIGINT"
 kill_timeout = "5s"
 
