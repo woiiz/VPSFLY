@@ -1,0 +1,30 @@
+app = "testvps-i-11xg"
+kill_signal = "SIGINT"
+kill_timeout = "5s"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[resources]
+  memory = 1024
+
+[[services]]
+  internal_port = 4200
+  protocol = "tcp"
+  [[services.ports]]
+    port = 4200
+    handlers = ["http"]
+
+[[services]]
+  internal_port = 22222
+  protocol = "tcp"
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 20
+  [[services.ports]]
+    port = 22222
+
+[mounts]
+  source = "data1"
+  destination = "/data"
